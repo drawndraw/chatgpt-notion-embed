@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChatGPT Notion Embed</title>
+  <title>ChatGPT Interface</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,15 +11,15 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #f4f4f4;
       margin: 0;
+      background-color: #f4f4f4;
     }
     #chat-container {
-      width: 90%;
+      width: 100%;
       max-width: 600px;
       background-color: white;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       padding: 20px;
     }
     #chat {
@@ -27,6 +27,7 @@
       overflow-y: auto;
       border: 1px solid #ddd;
       padding: 10px;
+      margin-bottom: 10px;
     }
     #chat p {
       margin: 0;
@@ -34,7 +35,6 @@
     }
     #input-container {
       display: flex;
-      margin-top: 10px;
     }
     #input-container input {
       flex: 1;
@@ -79,15 +79,15 @@
     appendMessage('You', userInput);
     document.getElementById('user-input').value = '';
 
-    // Fetch ChatGPT response
+    // Send the user's message to OpenAI API
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer YOUR_OPENAI_API_KEY`
+        'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
       },
       body: JSON.stringify({
-        model: 'gpt-4',
+        model: 'gpt-3.5-turbo',  // or 'gpt-4'
         messages: [{ role: 'user', content: userInput }]
       })
     });
